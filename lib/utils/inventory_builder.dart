@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/note.dart';
 import 'note_widget.dart';
-import '../models/databaseHelper.dart';
 class NoteBuilder extends StatelessWidget {
   final Future<List<Note>> future;
   final Function(Note) onDelete;
