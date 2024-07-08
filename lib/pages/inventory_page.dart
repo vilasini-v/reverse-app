@@ -1,4 +1,4 @@
-import 'package:construction_part2/utils/inventory_builder.dart';
+import 'package:construction_part2/utils/notes_builder.dart';
 import 'package:flutter/material.dart';
 import '../utils/material_name.dart';
 import '../models/databaseHelper.dart';
@@ -69,9 +69,10 @@ class _InventoryPageState extends State<InventoryPage> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Center(child: Text('No notes found'));
             } else {
-              return NoteBuilder(
+              return NotesBuilder(
                 future: _getNotes(),
                 onDelete: _onNoteDelete,
+                page: 'all',
               );
             }
           },

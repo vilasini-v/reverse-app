@@ -22,7 +22,6 @@ class _MaterialsPageState extends State<MaterialsPage> {
           backgroundColor: Colors.transparent,
           appBar: 
           ButtonsTabBar(
-        // Customize the appearance and behavior of the tab bar
         backgroundColor: Colors.deepPurple[400],
         borderWidth: 0,
         borderColor: Colors.black,

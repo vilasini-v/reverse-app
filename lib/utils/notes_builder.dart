@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/note.dart';
 import 'note_widget.dart';
-class ReceiveBuilder extends StatelessWidget {
+class NotesBuilder extends StatelessWidget {
   final Future<List<Note>> future;
   final Function(Note) onDelete;
-
-  ReceiveBuilder({required this.future, required this.onDelete});
+  late String page;
+  NotesBuilder({required this.future, required this.onDelete, required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +19,20 @@ class ReceiveBuilder extends StatelessWidget {
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Center(child: Text('No notes found'));
         } else {
-          final filteredNotes = snapshot.data!.where((note) => note.recv_req).toList();
+          List<Note> filteredNotes = snapshot.data!;
+          if(page=='used'){
+            filteredNotes = snapshot.data!.where((note) => note.used).toList();
+          }else if (page == ' receive') {
+            filteredNotes = snapshot.data!.where((note) => note.recv_req).toList();
+          } else if (page == 'request'){
+            filteredNotes = snapshot.data!.where((note) => !note.recv_req).toList();
+          } else if (page == 'all'){
+            filteredNotes = snapshot.data!;
+          }
           return ListView.builder(
-            
             itemCount: filteredNotes.length,
             itemBuilder: (context, index) {
               final note = filteredNotes[index];
-              print('Building note: ${note.name}'); // Debug print
               return NoteWidget(
                 note: note,
                 onDelete: () => onDelete(note),

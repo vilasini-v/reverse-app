@@ -1,5 +1,5 @@
 import 'package:construction_part2/models/note.dart';
-import 'package:construction_part2/utils/request_builder.dart';
+import 'package:construction_part2/utils/notes_builder.dart';
 import 'package:flutter/material.dart';
 import '../utils/material_name.dart';
 import '../models/databaseHelper.dart';
@@ -71,9 +71,10 @@ class _RequestPageState extends State<RequestPage> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Center(child: Text('No notes found'));
             } else {
-              return RequestBuilder(
+              return NotesBuilder(
                 future: _getNotes(),
                 onDelete: _onNoteDelete,
+                page: 'request',
               );
             }
           },
